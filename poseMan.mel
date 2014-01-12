@@ -1,3 +1,19 @@
+// Copyright (C) 2009 Francis Vega
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
 //
 //  PoseMan v 1.3.3
 //  Modify this at your own risk
@@ -20,8 +36,6 @@
 //  Contact
 //  hisconer@gmail.com
 //
-//  Blog
-//  http://inartx.com/poseman/
 
 //
 // Scripting tips
@@ -503,7 +517,7 @@ global proc poseMan_aboutPoseMan() {
 			columnLayout -adj 0;
 			// image -i ($gIconsPath + $gLogoFile) -w 280 -h 100;
 			text -l ("\n"+$poseMAN_UI_title);
-			text -l "Mêlèe Island Project Tools\n";
+			text -l "Mï¿½lï¿½e Island Project Tools\n";
 			text -l "Francis Vega (c) 2009\n";
 			button -w 100 -l "Close" -h 20 -c ("deleteUI -window "+$aboutPoseManWindow);
 		window -e -sizeable $gSizeableFlag -w 280 -h 230 -title "About PoseMAN" $aboutPoseManWindow;
@@ -739,7 +753,7 @@ global proc poseMan_addDefaultSection (string $sectionName) {
 		print ("// Section " + $buffer[$i] + " for Character " + $gCurrentCharPath + " has been created\n");
 	}
 
-	// Añadimos las secciones al recien creado sections.conf
+	// Aï¿½adimos las secciones al recien creado sections.conf
 	$fileID = `fopen ($gCurrentCharPath + "/" + "sections.conf") "w"`;
 	fprint $fileID $fileData;
 	fclose $fileID;
@@ -768,7 +782,7 @@ global proc poseMan_addNewSection (string $sectionName) {
 		if (poseMan_checkSectionName($sectionName) == 0) {			
 			sysFile -makeDir ($gCurrentCharPath + "/" + $buffer[$i]);			
 			poseMan_addSectionToConfigFile ($buffer[$i]);
-			// Añadimos el nuevo tab
+			// Aï¿½adimos el nuevo tab
 			addNewTabAsSection $buffer[$i] $gTabs;
 			
 			print ("// Section " + $buffer[$i] + " for Character " + $gCurrentCharPath + " has been created\n");
@@ -801,7 +815,7 @@ global proc poseMan_addNewShowSection (string $sectionName) {
 		if (poseMan_checkSectionName($sectionName) == 0) {			
 			sysFile -makeDir ($gCurrentCharPath + "/" + $buffer[$i]);			
 			poseMan_addSectionToConfigFile ($buffer[$i]);
-			// Añadimos el nuevo tab
+			// Aï¿½adimos el nuevo tab
 			addNewTabAsSection $buffer[$i] $gTabs;
 			
 			print ("// Section " + $buffer[$i] + " for Character " + $gCurrentCharPath + " has been created\n");
@@ -820,7 +834,7 @@ global proc poseMan_addNewShowSection (string $sectionName) {
 // Add a tab as section in UI 
 // --------------------------
 global proc addNewTabAsSection(string $sectionName, string $menu) {	
-	// Añadimos el nuevo tab
+	// Aï¿½adimos el nuevo tab
 	shelfLayout -h 300 -cw 82 -ch 102 -p $menu $sectionName;
 }
 
@@ -947,10 +961,10 @@ global proc poseMan_renameSectionFromConfigFile (string $sectionName, string $ne
 	string $buffer[];
 	int $i;
 
-	// leemos las secciones desde el fichero de configuración de secciones
+	// leemos las secciones desde el fichero de configuraciï¿½n de secciones
 	string $sectionsList[] = `poseMan_getSectionsFromConfFile $gCurrentCharPath`;
 	
-	// Ahora hacemos un recorrido y cuando demos con la sección a renombrar, damos el cambiazao
+	// Ahora hacemos un recorrido y cuando demos con la secciï¿½n a renombrar, damos el cambiazao
 	for ($i=0;$i<size($sectionsList);$i++) {
 		if ($sectionsList[$i] == $sectionName) {
 			$fileData += ($newSectionName + " * ");
@@ -979,10 +993,10 @@ global proc poseMan_removeSectionFromConfigFile (string $sectionName) {
 	string $buffer[];
 	int $i;
 
-	// leemos las secciones desde el fichero de configuración de secciones
+	// leemos las secciones desde el fichero de configuraciï¿½n de secciones
 	string $sectionsList[] = `poseMan_getSectionsFromConfFile $gCurrentCharPath`;
 				
-	// Ahora hacemos un recorrido y metemos todas las secciones en la variable final EXCEPTO la sección borrada
+	// Ahora hacemos un recorrido y metemos todas las secciones en la variable final EXCEPTO la secciï¿½n borrada
 	for ($i=0;$i<size($sectionsList);$i++) {
 		if ($sectionsList[$i] != $sectionName) {
 			$fileData += ($sectionsList[$i] + " * ");
@@ -1187,7 +1201,7 @@ global proc poseMan_addSectionToConfigFile (string $sectionName) {
 	string $buffer[];
 	int $i;
 	
-	// leemos las secciones desde el fichero de configuración de secciones
+	// leemos las secciones desde el fichero de configuraciï¿½n de secciones
 	string $sectionsList[] = `poseMan_getSectionsFromConfFile $gCurrentCharPath`;
 
 	// Adjuntamos al final del array las nuevas poses		
@@ -1221,7 +1235,7 @@ global proc addFormsAsPoses (string $sectionName, string $menu) {
 	string $poseThumbnailFormLayout;
 	global string $imgExtension;
 	
-	// Añadimos las poses	
+	// Aï¿½adimos las poses	
 	$listaPoses = poseMan_getPosesFromConfFile ($sectionName);
 	
 	for ($pose in $listaPoses) {
@@ -1400,7 +1414,7 @@ global proc poseMan_addPoseToConfigFile (string $sectionName, string $poseName) 
 	$poseName = poseMan_spacesToDown ($poseName);
 	$poseName = ($poseName + ".pose");
 	
-	// leemos las poses desde el fichero de configuración de secciones
+	// leemos las poses desde el fichero de configuraciï¿½n de secciones
 	string $posesList[] = poseMan_getPosesFromConfFile ($sectionName);
 
 	// Adjuntamos al final del array las nuevas poses
@@ -1488,7 +1502,7 @@ global proc poseMan_addNewPoseFromReference (int $idTabSeccion, string $nombrePo
 		for ($j=0;$j<size($atributosKeyable);$j++) {
 
 			// primero comprobamos si es de tipo "vector" o "non-vector"
-			// Si es vector no guardamos la primera referencia, así guardamos las siguientes 3, como atributos normales
+			// Si es vector no guardamos la primera referencia, asï¿½ guardamos las siguientes 3, como atributos normales
 			if (`getAttr -type ($listaObjs[$i]+"."+$atributosKeyable[$j])`=="double3" || `getAttr -type ($listaObjs[$i]+"."+$atributosKeyable[$j])`=="string") {				
 				// float $vectorValor[] = (`getAttr ($listaObjs[$i] + "." + $atributosKeyable[$j])`);
 				// $valor = ($vectorValor[0] + "," + $vectorValor[1] + "," + $vectorValor[2]);
@@ -1537,16 +1551,16 @@ global proc poseMan_addNewPoseFromReference (int $idTabSeccion, string $nombrePo
     
 	$gCurrentTabId = $idTabSeccion;    
 
-	// Añadimos la pose al archivo de poses
+	// Aï¿½adimos la pose al archivo de poses
 	poseMan_addPoseToConfigFile ($nombreSeccion[$idTabSeccion-1],  $nombrePose);
 	
-	// Añadimos la pose al UI
+	// Aï¿½adimos la pose al UI
 	addPoseToUI $nombreSeccion[$idTabSeccion-1] $nombrePose;
 }
 
 
 // --------------------
-// Añade una pose al ui
+// Aï¿½ade una pose al ui
 // --------------------
 global proc addPoseToUI (string $sectionName, string $poseName) {
 	
@@ -2106,7 +2120,7 @@ global proc poseMan_applyPose (string $sectionName, string $poseName, float $mix
 	
 	// leemos todas las lineas
 	while ( !`feof $fileID` ) {
-		// La línea es // o \n
+		// La lï¿½nea es // o \n
 		if (`substring $nextLine 1 2` == "//" || `substring $nextLine 1 2` == "\n" || `substring $nextLine 1 5` == "ctrl:") {
 			// ***
 		} else {
@@ -2118,7 +2132,7 @@ global proc poseMan_applyPose (string $sectionName, string $poseName, float $mix
 			// comprobamos si el objeto existe
 			if( `objExists ($gCurrentCharNamespace + $nombreDelObjeto)` == true ) {
 				
-				// Componemos la línea de mixAttr
+				// Componemos la lï¿½nea de mixAttr
 				if (size($objList)>0) {
 					for ($i=0;$i<size($objList);$i++) {
 						// si tiene namespace
@@ -2134,7 +2148,7 @@ global proc poseMan_applyPose (string $sectionName, string $poseName, float $mix
 					$filePoseData += ("poseMan_mixAttr (\""+$nombreDelObjeto+"\", \""+$gCurrentCharNamespace+"\", \""+$propiedadDelObjeto+"\", \""+$valorDelObjeto+"\", \""+$mix+"\", -1000000);\n");
 				}
 			} else {
-				// No se añade a filePoseData las líneas de un objeto que no existe.
+				// No se aï¿½ade a filePoseData las lï¿½neas de un objeto que no existe.
 			}
 		}
 		
@@ -2176,7 +2190,7 @@ global proc poseMan_applyPoseFast (string $sectionName, string $poseName) {
 	// leemos todas las lineas
 	while ( !`feof $fileID` ) {		
 		
-		// La línea es // o \n
+		// La lï¿½nea es // o \n
 		if (`substring $nextLine 1 2` == "//" || `substring $nextLine 1 2` == "\n" || `substring $nextLine 1 5` == "ctrl:") {
 			// esta linea no nos vale
 		} else {
@@ -2229,7 +2243,7 @@ global proc poseMan_mixAttrFast (string $objeto, string $objectNamespace, string
 	int $nTokens;
 	string $objetoCompleto;
 
-	// Procesamos el nombre del objeto para añadir el namespace en caso de que sea un nombre "compuesto" tipo nombre|nombre|nombre|....
+	// Procesamos el nombre del objeto para aï¿½adir el namespace en caso de que sea un nombre "compuesto" tipo nombre|nombre|nombre|....
 	tokenize $objeto "|" $buffer;
 
 	$objetoCompleto = "";
@@ -2263,7 +2277,7 @@ global proc poseMan_mixAttr (string $objeto, string $objectNamespace, string $pr
 	int $nTokens;
 	string $objetoCompleto = "";
 	
-	// Procesamos el nombre del objeto para añadir el namespace en caso de que sea un nombre "compuesto" tipo nombre|nombre|nombre|....
+	// Procesamos el nombre del objeto para aï¿½adir el namespace en caso de que sea un nombre "compuesto" tipo nombre|nombre|nombre|....
 	tokenize $objeto "|" $buffer;
 
 	$objetoCompleto = "";
@@ -2306,7 +2320,7 @@ global proc poseMan_removePoseFromConfigFile (string $sectionName, string $poseN
 	string $fileData = "";
 	string $buffer[];
 
-	// leemos las poses desde el fichero de configuración de poses
+	// leemos las poses desde el fichero de configuraciï¿½n de poses
 	string $posesList[] = poseMan_getPosesFromConfFile ($sectionName);
 
 	// Ahora hacemos un recorrido y metemos todas las poses en la variable final EXCEPTO la pose borrada
@@ -2342,7 +2356,7 @@ global proc poseMan_renamePoseFromConfigFile (string $sectionName, string $poseN
 	string $buffer[];
 	int $i;
 
-	// leemos las poses desde el fichero de configuración de poses
+	// leemos las poses desde el fichero de configuraciï¿½n de poses
 	string $posesList[] = poseMan_getPosesFromConfFile ($sectionName);
 	
 	// Ahora hacemos un recorrido y cuando demos con la pose a renombrar, damos el cambiazao
@@ -2378,7 +2392,7 @@ global proc poseMan_selectControlsFromPose (string $sectionName, string $poseNam
 	$nextLine = `fgetline $fileID`;
 
 	while ( !`feof $fileID` ) {
-		// La lína es ctrl:
+		// La lï¿½na es ctrl:
 		if (`substring $nextLine 1 5` == "ctrl:") {
 			tokenize $nextLine ":" $buffer;
 			$nombreDelObjeto = $buffer[1];
@@ -2618,10 +2632,10 @@ global proc poseMan_movePose (string $sectionName, string $poseName, string $tar
 		sysFile -rename $thumbTarget $thumbOriginal;
 		
 		// actualizamos los poses.conf correspondientes.
-		// Quitamos la pose de la sección de origen
+		// Quitamos la pose de la secciï¿½n de origen
 		poseMan_removePoseFromConfigFile ($sectionName, $poseName);
 		
-		// Añadimos la pose a la sección de destino
+		// Aï¿½adimos la pose a la secciï¿½n de destino
 		string $poseNameNoExt = `substring $poseName 1 (size($poseName)-5)`;
 		poseMan_addPoseToConfigFile ($targetSection[0], $poseNameNoExt);
 		
@@ -3047,7 +3061,7 @@ global proc poseMan_refreshMainWindow() {
 		}
 	}
 
-	// Añadimos las poses
+	// Aï¿½adimos las poses
 	for ($section in $sections) {		
 		addFormsAsPoses $section $section;
 	}
@@ -3092,7 +3106,7 @@ global proc poseMan_refreshMainWindowWhenNewCharacter () {
 	// ui
 	for ($seccion in $sectionsList) {
 		// SECCIONES
-		// Genera el shelfLayout por sección, donde van las poses
+		// Genera el shelfLayout por secciï¿½n, donde van las poses
 		shelfLayout -p $gTabs -h 300 -cw 82 -ch 102 $seccion;
 			popupMenu;
 				menuItem -l "Create new Pose..." -c "poseMan_captureNewPoseUI($gTabs)";
@@ -3127,7 +3141,7 @@ global proc poseMan_refreshMainWindowWhenNewCharacter () {
 	menu -e -en 1 -l "Sections" sectionMenu;
 	menu -e -en 1 -l "Poses" poseMenu;
 	
-	// añadimos el nombre del personaje al character info text layout
+	// aï¿½adimos el nombre del personaje al character info text layout
 	text -e -l ("Character name: " + $gCurrentChar) characterNameTextLayout;
 	
 	
@@ -3157,7 +3171,7 @@ global proc poseMan_refreshMainWindowWhenDeleteSections() {
 	// ui
 	for ($seccion in $sectionsList) {
 		// SECCIONES
-		// Genera el shelfLayout por sección, donde van las poses
+		// Genera el shelfLayout por secciï¿½n, donde van las poses
 		shelfLayout -p $gTabs -h 300 -cw 82 -ch 102 $seccion;
 					
 		// POSES (loop)
@@ -3388,7 +3402,7 @@ global proc string pathonize (string $path) {
 
 
 // ----------------------------------------------------------------------------------------------------
-// Encuentra un elemento en un array y devuélve la posición en el mismo, devuelve -1 si no lo encuentra
+// Encuentra un elemento en un array y devuï¿½lve la posiciï¿½n en el mismo, devuelve -1 si no lo encuentra
 // ----------------------------------------------------------------------------------------------------
 global proc int findElementAndGetIndex (string $elementToFind, string $theArray[]) {
 
@@ -3520,7 +3534,7 @@ global proc string[] poseMan_getPosedataFromFile (string $sectionName, string $p
 		
 		
 		
-		// La línea es // o \n
+		// La lï¿½nea es // o \n
 		if (`substring $nextLine 1 2` == "//" || `substring $nextLine 1 2` == "\n" || `substring $nextLine 1 5` == "ctrl:") {
 		
 		} else {
@@ -3533,7 +3547,7 @@ global proc string[] poseMan_getPosedataFromFile (string $sectionName, string $p
 			
 			if(`objExists ($gCurrentCharNamespace + $nombreDelObjeto)`) {				
 				
-				// Componemos la línea de mixAttr
+				// Componemos la lï¿½nea de mixAttr
 				$filePoseData[$count] = ($nombreDelObjeto + "*" + $propiedadDelObjeto + "*" + $valorDelObjeto+"\n");
 				$count++;
 			} else {
