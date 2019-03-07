@@ -3626,5 +3626,3 @@ global proc rewritePosesConf (string $sectionName, string $allPoses[]) {
 	poseMan_refreshMainWindow;
 
 }
-
-
